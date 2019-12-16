@@ -10,6 +10,9 @@
     <modules>
         <module>mobtally-company-api</module>
         <module>mobtally-ledger-api</module>
+        <module>mobtally-company-service</module>
+        <module>mobtally-ledger-service</module>
+        <module>mobtally-common</module>
     </modules>
     <packaging>pom</packaging>
 
