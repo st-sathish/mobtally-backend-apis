@@ -8,8 +8,8 @@
     <artifactId>mobtally-backend-apis</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>mobtally-company</module>
-        <module>mobtally-ledger</module>
+        <module>mobtally-company-api</module>
+        <module>mobtally-ledger-api</module>
     </modules>
     <packaging>pom</packaging>
 
