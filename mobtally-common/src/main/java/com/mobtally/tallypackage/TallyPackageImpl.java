@@ -1,5 +1,7 @@
 package com.mobtally.tallypackage;
 
+import com.mobtally.tallypackage.base.Envelop;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlAccessType;

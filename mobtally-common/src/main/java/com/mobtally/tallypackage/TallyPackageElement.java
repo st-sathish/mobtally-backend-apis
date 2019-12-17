@@ -1,6 +1,12 @@
 package com.mobtally.tallypackage;
 
-public interface TallyPackageElement extends Comparable<TallyPackageElement>, Cloneable {
+import com.mobtally.tallypackage.base.Envelop;
+
+public interface TallyPackageElement extends Cloneable {
+
+    Envelop getEnvelop();
+
+    void setEnvelop(Envelop envelop);
 
     /**
      * Create a deep copy of this object.

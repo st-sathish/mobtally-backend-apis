@@ -1,4 +1,4 @@
-package com.mobtally.tallypackage;
+package com.mobtally.tallypackage.base;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
