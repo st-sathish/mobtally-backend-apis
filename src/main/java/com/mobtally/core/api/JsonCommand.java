@@ -1,5 +1,7 @@
 package com.mobtally.core.api;
 
+import com.google.gson.JsonElement;
+
 /**
  * Immutable representation of a command.
  *
@@ -12,8 +14,15 @@ public final class JsonCommand {
 
     private final Long commandId;
 
-    public JsonCommand(final Long commandId, final String jsonCommand) {
+    private final JsonElement parsedCommand;
+
+    public JsonCommand(final Long commandId, final String jsonCommand, JsonElement jsonElement) {
         this.commandId = commandId;
         this.jsonCommand = jsonCommand;
+        this.parsedCommand = jsonElement;
+    }
+
+    public static JsonCommand from(final String jsonCommand, final JsonElement parsedCommand) {
+        return new JsonCommand(null, jsonCommand, parsedCommand);
     }
 }

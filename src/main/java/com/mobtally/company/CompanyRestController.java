@@ -1,7 +1,9 @@
 package com.mobtally.company;
 
-import com.mobtally.company.service.CompanyService;
+import com.mobtally.commands.service.CommandSourceWritePlatformService;
+import com.mobtally.company.service.CompanyReadPlatformService;
 import com.mobtally.core.CommandProcessingResult;
+import com.mobtally.core.CommandWrapper;
 import com.mobtally.core.CommandWrapperBuilder;
 import com.mobtally.core.serialization.DefaultToApiJsonSerializer;
 import io.swagger.annotations.Api;
@@ -21,9 +23,11 @@ public class CompanyRestController implements InitializingBean {
 
     private static final Logger logger = LoggerFactory.getLogger(CompanyRestController.class);
 
-    private final CompanyService companyService;
-
     private final DefaultToApiJsonSerializer toApiJsonSerializer;
+
+    private final CommandSourceWritePlatformService commandSourceWritePlatformService;
+
+    private final CompanyReadPlatformService companyReadPlatformService;
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -31,10 +35,12 @@ public class CompanyRestController implements InitializingBean {
     }
 
     @Autowired
-    public CompanyRestController(final CompanyService companyService,
-                                 final DefaultToApiJsonSerializer toApiJsonSerializer) {
-        this.companyService = companyService;
+    public CompanyRestController(final DefaultToApiJsonSerializer toApiJsonSerializer,
+                                 final CommandSourceWritePlatformService commandSourceWritePlatformService,
+                                 final CompanyReadPlatformService companyReadPlatformService) {
         this.toApiJsonSerializer = toApiJsonSerializer;
+        this.commandSourceWritePlatformService = commandSourceWritePlatformService;
+        this.companyReadPlatformService = companyReadPlatformService;
     }
 
     @GetMapping("/v1/companies")
@@ -44,8 +50,10 @@ public class CompanyRestController implements InitializingBean {
 
     @PostMapping("/v1/companies")
     public String createCompany(final String apiRequestBodyAsJson) {
-        final CommandWrapperBuilder builder = new CommandWrapperBuilder().createCompany(apiRequestBodyAsJson);
-        CommandProcessingResult result = companyService.save(builder);
+        final CommandWrapper wrapper = new CommandWrapperBuilder()
+                .createCompany(apiRequestBodyAsJson)
+                .build();
+        CommandProcessingResult result = commandSourceWritePlatformService.logCommandSource(wrapper);
         return this.toApiJsonSerializer.serialize(result);
     }
 

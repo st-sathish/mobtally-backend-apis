@@ -3,5 +3,5 @@ package com.mobtally.company.service;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CompanyServiceImpl implements CompanyService {
+public class CompanyReadPlatformServiceImpl implements CompanyReadPlatformService {
 }

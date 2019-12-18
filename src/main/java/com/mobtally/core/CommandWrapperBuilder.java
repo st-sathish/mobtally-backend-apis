@@ -8,7 +8,7 @@ public class CommandWrapperBuilder {
     private String entityId;
 
     public CommandWrapper build() {
-        return new CommandWrapper(json);
+        return new CommandWrapper(json, entityName, action);
     }
 
     public CommandWrapperBuilder withJson(final String json) {
