@@ -1,8 +1,8 @@
 package com.mobtally.company.service;
 
-import com.mobtally.command.CommandHandler;
+import com.mobtally.core.NewCommandSourceHandler;
 
-public class CreateCompanyCommandHandler implements CommandHandler {
+public class CreateCompanyCommandHandler implements NewCommandSourceHandler {
 
 
 }
