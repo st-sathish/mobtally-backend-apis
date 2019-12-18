@@ -9,8 +9,8 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 @XmlAccessorType(XmlAccessType.NONE)
-@XmlType(name = "track", namespace = "http://tallypackage.mobtally.org")
-@XmlRootElement(name = "track", namespace = "http://tallypackage.mobtally.com")
+@XmlType(name = "ledger", namespace = "http://tallypackage.mobtally.org")
+@XmlRootElement(name = "ledger", namespace = "http://tallypackage.mobtally.com")
 public class LedgerImpl extends AbstractTallyPackageElement implements Ledger {
 
     /** Needed by JAXB */

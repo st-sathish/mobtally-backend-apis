@@ -1,4 +1,4 @@
-package com.mobtally.company;
+package com.mobtally.company.service;
 
 import com.mobtally.command.CommandHandler;
 

@@ -1,4 +1,4 @@
-package com.mobtally.company;
+package com.mobtally.company.service;
 
 import org.springframework.stereotype.Service;
 
