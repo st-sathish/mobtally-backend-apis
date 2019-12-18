@@ -1,6 +1,7 @@
 package com.mobtally.tallypackage;
 
 import com.mobtally.tallypackage.base.Envelop;
+import com.mobtally.tallypackage.base.TallyPackageElement;
 import com.mobtally.util.IoSupport;
 
 import javax.xml.bind.JAXBException;
@@ -13,7 +14,7 @@ import java.io.Serializable;
 
 public abstract class AbstractTallyPackageElement implements TallyPackageElement, Serializable {
 
-    @XmlElement(name = "ENVELOP")
+    /*@XmlElement(name = "ENVELOP")
     private Envelop envelop;
 
     @Override
@@ -24,7 +25,7 @@ public abstract class AbstractTallyPackageElement implements TallyPackageElement
     @Override
     public void setEnvelop(Envelop envelop) {
         this.envelop = envelop;
-    }
+    }*/
 
     /**
      * Attention: The media package reference is not being cloned so that calling <code>getMediaPackage()</code> on the

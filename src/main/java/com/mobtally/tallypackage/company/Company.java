@@ -1,10 +1,10 @@
 package com.mobtally.tallypackage.company;
 
-import com.mobtally.tallypackage.TallyPackageElement;
+import com.mobtally.tallypackage.base.TallyPackageElement;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-@XmlJavaTypeAdapter(CompanyImpl.Adapter.class)
+//@XmlJavaTypeAdapter(CompanyImpl.Adapter.class)
 public interface Company extends TallyPackageElement {
 
     void setName(String name);

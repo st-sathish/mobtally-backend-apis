@@ -10,17 +10,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
-@XmlAccessorType(XmlAccessType.NONE)
-@XmlType(name = "COMPANY", namespace = "http://tallypackage.mobtally.org")
-@XmlRootElement(name = "COMPANY", namespace = "http://tallypackage.mobtally.org")
-public class CompanyImpl extends AbstractTallyPackageElement implements Company {
+//@XmlAccessorType(XmlAccessType.NONE)
+//@XmlType(name = "COMPANY", namespace = "http://tallypackage.mobtally.org")
+//@XmlRootElement(name = "COMPANY", namespace = "http://tallypackage.mobtally.org")
+public class CompanyImpl extends AbstractTallyPackageElement {
 
     /** Needed by JAXB */
     public CompanyImpl() {
 
     }
 
-    @XmlAttribute(name = "NAME")
+    /*@XmlAttribute(name = "NAME")
     private String name = null;
 
     @XmlAttribute(name = "RESERVEDNAME")
@@ -108,5 +108,5 @@ public class CompanyImpl extends AbstractTallyPackageElement implements Company 
         public Company unmarshal(CompanyImpl mp) throws Exception {
             return mp;
         }
-    }
+    }*/
 }

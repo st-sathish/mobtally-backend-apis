@@ -25,17 +25,15 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-@XmlType(name = "tallypackage", namespace = "http://tallypackage.mobtally.com")
-@XmlRootElement(name = "tallypackage", namespace = "http://tallypackage.tallypackage.com")
+@XmlRootElement(name = "ENVELOP")
 @XmlAccessorType(XmlAccessType.NONE)
 public class TallyPackageImpl implements TallyPackage {
 
     /** Context for serializing and deserializing */
     static final JAXBContext context;
 
-    @XmlElementWrapper(name = "ENVELOP")
-    @XmlElement(name = "ENVELOP")
-    Envelop envelop;
+    @XmlElement(name = "title")
+    private String title = "Hello";
 
     static {
         try {
@@ -43,6 +41,16 @@ public class TallyPackageImpl implements TallyPackage {
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void setTitle(String envelop) {
+        this.title = envelop;
+    }
+
+    @Override
+    public String getTitle() {
+        return this.title;
     }
 
     /**

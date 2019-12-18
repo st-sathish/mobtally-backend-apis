@@ -2,12 +2,14 @@ package com.mobtally.tallypackage.base;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
+//@XmlRootElement(name = "ENVELOP")
 public class EnvelopImpl implements Envelop {
 
-    @XmlElementWrapper(name = "IMPORTDATA")
-    @XmlElement(name = "IMPORTDATA")
+    //@XmlElementWrapper(name = "IMPORTDATA")
+    //@XmlElement(name = "IMPORTDATA")
     private ImportData importData;
 
     @Override
