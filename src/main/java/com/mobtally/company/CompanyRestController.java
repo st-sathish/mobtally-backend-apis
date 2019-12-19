@@ -6,24 +6,26 @@ import com.mobtally.core.CommandProcessingResult;
 import com.mobtally.core.CommandWrapper;
 import com.mobtally.core.CommandWrapperBuilder;
 import com.mobtally.core.serialization.DefaultToApiJsonSerializer;
-import com.mobtally.tallypackage.TallyPackage;
-import com.mobtally.tallypackage.TallyPackageBuilder;
-import com.mobtally.tallypackage.TallyPackageBuilderFactory;
-import com.mobtally.tallypackage.TallyPackageException;
-import com.mobtally.tallypackage.TallyPackageParser;
+import com.mobtally.tallypackage.base.Envelope;
+import com.mobtally.tallypackage.base.ImportData;
+import com.mobtally.tallypackage.base.TallyMessage;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
+import java.io.StringWriter;
 
 @RestController
 @RequestMapping("/api")
@@ -57,13 +59,13 @@ public class CompanyRestController implements InitializingBean {
         return "";
     }
 
-    @PostMapping(value = "/v1/companies")
-    public String createCompany(final String apiRequestBodyAsJson) {
+    @PostMapping(value = "/v1/companies", consumes = MediaType.APPLICATION_XML_VALUE)
+    public Envelope createCompany(final String apiRequestBodyAsJson) {
         final CommandWrapper wrapper = new CommandWrapperBuilder()
                 .createCompany(apiRequestBodyAsJson)
                 .build();
         CommandProcessingResult result = commandSourceWritePlatformService.logCommandSource(wrapper);
-        try {
+        /*try {
             TallyPackageBuilder tallyPackageBuilder = TallyPackageBuilderFactory.newInstance().newTallyPackageBuilder();
             TallyPackage tallyPackage = null;
             String path = "/home/iface/tally_data/ledgers.xml";
@@ -76,9 +78,31 @@ public class CompanyRestController implements InitializingBean {
             return TallyPackageParser.getAsXml(tallyPackage);
         } catch (TallyPackageException e) {
             logger.error("Tally Parse exception {}", e.getMessage());
+        }*/
+        try {
+            File file = new File("/home/iface/tally_data/ledgers.xml");
+            JAXBContext jaxbContext = JAXBContext.newInstance(Envelope.class);
+
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            Envelope envelop = (Envelope) jaxbUnmarshaller.unmarshal(file);
+            return envelop;
+        } catch (JAXBException e) {
+            e.printStackTrace();
         }
-        return this.toApiJsonSerializer.serialize(result);
+        return null;//this.toApiJsonSerializer.serialize(result);
     }
 
+    String marshal() throws Exception {
+        Envelope root = new Envelope();
+        ImportData create = new ImportData();
+        root.setImportData( create );
+        create.setTallyMessage(new TallyMessage());
+        JAXBContext jc = JAXBContext.newInstance( Envelope.class );
+        Marshaller m = jc.createMarshaller();
+        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        StringWriter writer = new StringWriter();
+        m.marshal( root, writer);
+        return writer.toString();
+    }
 
 }

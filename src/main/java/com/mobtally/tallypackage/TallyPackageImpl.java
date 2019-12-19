@@ -29,7 +29,7 @@ public class TallyPackageImpl implements TallyPackage {
     /** Context for serializing and deserializing */
     static final JAXBContext context;
 
-    @XmlElement(name = "IMPORTDATA")
+    /*@XmlElement(name = "IMPORTDATA")
     private ImportData importData;
 
     @Override
@@ -40,7 +40,7 @@ public class TallyPackageImpl implements TallyPackage {
     @Override
     public ImportData getImportData() {
         return this.importData;
-    }
+    }*/
 
     static {
         try {
