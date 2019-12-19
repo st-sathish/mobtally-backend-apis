@@ -1,6 +1,6 @@
 package com.mobtally.tallypackage.ledger;
 
-import com.mobtally.tallypackage.base.TallyPackageElement;
+import com.mobtally.tallypackage.TallyPackageElement;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 

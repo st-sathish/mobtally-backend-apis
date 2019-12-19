@@ -1,31 +1,18 @@
 package com.mobtally.tallypackage;
 
-import com.mobtally.tallypackage.base.Envelop;
-import com.mobtally.tallypackage.base.TallyPackageElement;
 import com.mobtally.util.IoSupport;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlElement;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
 
 public abstract class AbstractTallyPackageElement implements TallyPackageElement, Serializable {
 
-    /*@XmlElement(name = "ENVELOP")
-    private Envelop envelop;
-
-    @Override
-    public Envelop getEnvelop() {
-        return this.envelop;
-    }
-
-    @Override
-    public void setEnvelop(Envelop envelop) {
-        this.envelop = envelop;
-    }*/
+    /** The element's type whithin the manifest: ImportData, Company, Ledger etc. */
+    protected Type elementType = null;
 
     /**
      * Attention: The media package reference is not being cloned so that calling <code>getMediaPackage()</code> on the

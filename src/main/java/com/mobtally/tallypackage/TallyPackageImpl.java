@@ -1,6 +1,5 @@
 package com.mobtally.tallypackage;
 
-import com.mobtally.tallypackage.base.Envelop;
 import com.mobtally.util.IoSupport;
 import org.apache.commons.io.IOUtils;
 import org.w3c.dom.Node;
@@ -11,9 +10,7 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
@@ -32,8 +29,18 @@ public class TallyPackageImpl implements TallyPackage {
     /** Context for serializing and deserializing */
     static final JAXBContext context;
 
-    @XmlElement(name = "title")
-    private String title = "Hello";
+    @XmlElement(name = "IMPORTDATA")
+    private ImportData importData;
+
+    @Override
+    public void setImportData(ImportData importData) {
+        this.importData = importData;
+    }
+
+    @Override
+    public ImportData getImportData() {
+        return this.importData;
+    }
 
     static {
         try {
@@ -43,14 +50,8 @@ public class TallyPackageImpl implements TallyPackage {
         }
     }
 
-    @Override
-    public void setTitle(String envelop) {
-        this.title = envelop;
-    }
-
-    @Override
-    public String getTitle() {
-        return this.title;
+    public static JAXBContext getContext() {
+        return context;
     }
 
     /**

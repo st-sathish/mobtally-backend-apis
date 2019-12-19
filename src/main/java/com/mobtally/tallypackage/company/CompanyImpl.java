@@ -1,6 +1,10 @@
 package com.mobtally.tallypackage.company;
 
 import com.mobtally.tallypackage.AbstractTallyPackageElement;
+import com.mobtally.tallypackage.TallyPackageException;
+import com.mobtally.tallypackage.TallyPackageSerializer;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -10,17 +14,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
-//@XmlAccessorType(XmlAccessType.NONE)
-//@XmlType(name = "COMPANY", namespace = "http://tallypackage.mobtally.org")
-//@XmlRootElement(name = "COMPANY", namespace = "http://tallypackage.mobtally.org")
-public class CompanyImpl extends AbstractTallyPackageElement {
+@XmlAccessorType(XmlAccessType.NONE)
+@XmlType(name = "COMPANY", namespace = "http://tallypackage.mobtally.org")
+@XmlRootElement(name = "COMPANY", namespace = "http://tallypackage.mobtally.org")
+public class CompanyImpl extends AbstractTallyPackageElement implements Company {
 
     /** Needed by JAXB */
     public CompanyImpl() {
 
     }
 
-    /*@XmlAttribute(name = "NAME")
+    @XmlAttribute(name = "NAME")
     private String name = null;
 
     @XmlAttribute(name = "RESERVEDNAME")
@@ -108,5 +112,5 @@ public class CompanyImpl extends AbstractTallyPackageElement {
         public Company unmarshal(CompanyImpl mp) throws Exception {
             return mp;
         }
-    }*/
+    }
 }
