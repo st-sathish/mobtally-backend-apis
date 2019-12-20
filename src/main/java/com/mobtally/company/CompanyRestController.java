@@ -59,7 +59,7 @@ public class CompanyRestController implements InitializingBean {
         return "";
     }
 
-    @PostMapping(value = "/v1/companies", consumes = MediaType.APPLICATION_XML_VALUE)
+    @PostMapping(value = "/v1/companies", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public Envelope createCompany(final String apiRequestBodyAsJson) {
         final CommandWrapper wrapper = new CommandWrapperBuilder()
                 .createCompany(apiRequestBodyAsJson)
