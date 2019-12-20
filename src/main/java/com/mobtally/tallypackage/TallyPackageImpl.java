@@ -1,5 +1,6 @@
 package com.mobtally.tallypackage;
 
+import com.mobtally.tallypackage.base.ImportData;
 import com.mobtally.util.IoSupport;
 import org.apache.commons.io.IOUtils;
 import org.w3c.dom.Node;
@@ -29,18 +30,16 @@ public class TallyPackageImpl implements TallyPackage {
     /** Context for serializing and deserializing */
     static final JAXBContext context;
 
-    /*@XmlElement(name = "IMPORTDATA")
+    @XmlElement(name = "IMPORTDATA")
     private ImportData importData;
 
-    @Override
     public void setImportData(ImportData importData) {
         this.importData = importData;
     }
 
-    @Override
     public ImportData getImportData() {
         return this.importData;
-    }*/
+    }
 
     static {
         try {

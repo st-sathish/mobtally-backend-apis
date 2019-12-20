@@ -6,6 +6,9 @@ import com.mobtally.core.CommandProcessingResult;
 import com.mobtally.core.CommandWrapper;
 import com.mobtally.core.CommandWrapperBuilder;
 import com.mobtally.core.serialization.DefaultToApiJsonSerializer;
+import com.mobtally.tallypackage.TallyPackage;
+import com.mobtally.tallypackage.TallyPackageException;
+import com.mobtally.tallypackage.TallyPackageParser;
 import com.mobtally.tallypackage.base.Envelope;
 import com.mobtally.tallypackage.base.ImportData;
 import com.mobtally.tallypackage.base.TallyMessage;
@@ -60,7 +63,7 @@ public class CompanyRestController implements InitializingBean {
     }
 
     @PostMapping(value = "/v1/companies", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-    public Envelope createCompany(final String apiRequestBodyAsJson) {
+    public TallyPackage createCompany(final String apiRequestBodyAsJson) {
         final CommandWrapper wrapper = new CommandWrapperBuilder()
                 .createCompany(apiRequestBodyAsJson)
                 .build();
@@ -80,13 +83,14 @@ public class CompanyRestController implements InitializingBean {
             logger.error("Tally Parse exception {}", e.getMessage());
         }*/
         try {
-            File file = new File("/home/iface/tally_data/ledgers.xml");
-            JAXBContext jaxbContext = JAXBContext.newInstance(Envelope.class);
-
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            Envelope envelop = (Envelope) jaxbUnmarshaller.unmarshal(file);
-            return envelop;
-        } catch (JAXBException e) {
+            String xml = "<ENVELOPE>\n" +
+                    "  <IMPORTDATA>\n" +
+                    "    <TALLYMESSAGE xmlns:UDF=\"TallyUDF\">\n" +
+                    "    </TALLYMESSAGE>\n" +
+                    "  </IMPORTDATA>\n" +
+                    "</ENVELOPE>";
+            return TallyPackageParser.getFromXml(xml);
+        } catch (TallyPackageException e) {
             e.printStackTrace();
         }
         return null;//this.toApiJsonSerializer.serialize(result);
