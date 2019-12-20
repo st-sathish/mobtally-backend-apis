@@ -1,2 +1,9 @@
 spring:
-  profiles: dev
+  profiles:
+    active: dev # available options are dev, stage and prod
+  application:
+    name: MobTally
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: update
