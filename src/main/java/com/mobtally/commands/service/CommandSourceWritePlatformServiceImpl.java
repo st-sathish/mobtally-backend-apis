@@ -26,7 +26,7 @@ public class CommandSourceWritePlatformServiceImpl implements CommandSourceWrite
     public CommandProcessingResult logCommandSource(CommandWrapper wrapper) {
         final String json = wrapper.getJson();
         final JsonElement parsedCommand = this.fromApiJsonHelper.parse(json);
-        final JsonCommand command = JsonCommand.from(json, parsedCommand);
+        final JsonCommand command = JsonCommand.from(json, parsedCommand, this.fromApiJsonHelper);
         CommandProcessingResult result = commandProcessingService.processCommand(wrapper, command);
         return result;
     }

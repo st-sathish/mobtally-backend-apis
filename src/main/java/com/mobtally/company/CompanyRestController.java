@@ -6,6 +6,8 @@ import com.mobtally.core.CommandProcessingResult;
 import com.mobtally.core.CommandWrapper;
 import com.mobtally.core.CommandWrapperBuilder;
 import com.mobtally.core.serialization.DefaultToApiJsonSerializer;
+import com.mobtally.core.serialization.FromJsonHelper;
+import com.mobtally.dto.Response;
 import com.mobtally.tallypackage.TallyPackage;
 import com.mobtally.tallypackage.TallyPackageException;
 import com.mobtally.tallypackage.TallyPackageParser;
@@ -20,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -57,13 +60,15 @@ public class CompanyRestController implements InitializingBean {
         this.companyReadPlatformService = companyReadPlatformService;
     }
 
-    @GetMapping("/v1/companies")
-    public String fetchCompanyList() {
-        return "";
+    @GetMapping(value = "/v1/companies", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Response fetchCompanyList() {
+        Response response = new Response();
+        response.setData(companyReadPlatformService.fetchCompanies());
+        return response;
     }
 
     @PostMapping(value = "/v1/companies", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-    public TallyPackage createCompany(final String apiRequestBodyAsJson) {
+    public TallyPackage createCompany(final @RequestBody String apiRequestBodyAsJson) {
         final CommandWrapper wrapper = new CommandWrapperBuilder()
                 .createCompany(apiRequestBodyAsJson)
                 .build();

@@ -2,6 +2,7 @@ package com.mobtally;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -11,6 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication(scanBasePackages = "com.mobtally")
 @EnableSwagger2
+@EntityScan(basePackages = "com.mobtally.domain")
 public class MobTallyApplication {
 
     @Bean
