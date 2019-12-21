@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class CompanyReadPlatformServiceImpl implements CompanyReadPlatformService {
 
-    private static List<CompanyDTO> companyDTOS = new ArrayList<>();
+    public static List<CompanyDTO> companyDTOS = new ArrayList<>();
 
     static {
         CompanyDTO companyDTO = new CompanyDTO("Mob Tally");

@@ -6,5 +6,6 @@ public final class CompanyApiConstants {
 
     }
 
-    public static final String NAME_PARAM_NAME = "name";
+    // request parameters
+    public static final String COMPANY_NAME_REQUEST_PARAM = "name";
 }

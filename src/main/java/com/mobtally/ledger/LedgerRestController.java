@@ -1,7 +1,6 @@
 package com.mobtally.ledger;
 
-import com.mobtally.company.CompanyRestController;
-import com.mobtally.ledger.service.LedgerService;
+import com.mobtally.ledger.service.LedgerReadPlatformService;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +19,7 @@ public class LedgerRestController implements InitializingBean  {
 
     private static final Logger logger = LoggerFactory.getLogger(LedgerRestController.class);
 
-    private final LedgerService ledgerService;
+    private final LedgerReadPlatformService ledgerService;
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -28,7 +27,7 @@ public class LedgerRestController implements InitializingBean  {
     }
 
     @Autowired
-    public LedgerRestController(final LedgerService ledgerService) {
+    public LedgerRestController(final LedgerReadPlatformService ledgerService) {
         this.ledgerService = ledgerService;
     }
 
