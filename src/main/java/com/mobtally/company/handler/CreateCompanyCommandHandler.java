@@ -21,6 +21,6 @@ public class CreateCompanyCommandHandler implements NewCommandSourceHandler {
 
     @Override
     public CommandProcessingResult processCommand(JsonCommand command) {
-        return this.companyWritePlatformService.save(command);
+        return this.companyWritePlatformService.createCompany(command);
     }
 }

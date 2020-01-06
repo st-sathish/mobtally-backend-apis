@@ -5,5 +5,5 @@ import com.mobtally.core.api.JsonCommand;
 
 public interface CompanyWritePlatformService {
 
-    CommandProcessingResult save(JsonCommand command);
+    CommandProcessingResult createCompany(JsonCommand command);
 }
