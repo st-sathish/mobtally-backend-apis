@@ -1,18 +1,17 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/mob_tally
-    username: root
-    password: root
-    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
     continue-on-error: false
     initialization-mode: always
   jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
     hibernate:
       ddl-auto: update
-    show-sql: false
+    show-sql: true
     properties:
       hibernate:
-        format_sql: false
-logging:
-  path: /var/log/tomcat
-  file: mobtally.log
+        format_sql: true

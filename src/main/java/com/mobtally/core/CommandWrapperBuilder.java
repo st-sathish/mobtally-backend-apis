@@ -6,9 +6,10 @@ public class CommandWrapperBuilder {
     private String action;
     private String entityName;
     private String entityId;
+    private Long companyId;
 
     public CommandWrapper build() {
-        return new CommandWrapper(json, entityName, action);
+        return new CommandWrapper(this.json, this.entityName, this.action, this.companyId);
     }
 
     public CommandWrapperBuilder withJson(final String json) {
@@ -26,14 +27,16 @@ public class CommandWrapperBuilder {
         this.entityName = "COMPANY";
         this.entityId = null;
         this.json = json;
+        this.companyId = null;
         return this;
     }
 
-    public CommandWrapperBuilder updateCompany(final String entityId, final String json) {
+    public CommandWrapperBuilder updateCompany(final String entityId, final Long companyId, final String json) {
         this.action = "UPDATE";
         this.entityName = "COMPANY";
         this.entityId = entityId;
         this.json = json;
+        this.companyId = companyId;
         return this;
     }
 }

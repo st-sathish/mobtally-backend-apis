@@ -4,6 +4,6 @@ spring:
   application:
     name: MobTally
   jpa:
-    database: mysql
+    database: postgresql
     hibernate:
       ddl-auto: update

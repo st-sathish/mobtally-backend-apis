@@ -5,6 +5,7 @@ public class CommandWrapper {
     private final String json;
     private final String actionName;
     private final String entityName;
+    private final Long companyId;
 
     public CommandWrapper(final String json,
                           final String entityName,
@@ -12,6 +13,17 @@ public class CommandWrapper {
         this.json = json;
         this.entityName = entityName;
         this.actionName = actionName;
+        this.companyId = null;
+    }
+
+    public CommandWrapper(final String json,
+                          final String entityName,
+                          final String actionName,
+                          final Long companyId) {
+        this.json = json;
+        this.entityName = entityName;
+        this.actionName = actionName;
+        this.companyId = companyId;
     }
 
     public String actionName() {
@@ -24,5 +36,9 @@ public class CommandWrapper {
 
     public String getJson() {
         return json;
+    }
+
+    public Long getCompanyId() {
+        return companyId;
     }
 }

@@ -61,15 +61,15 @@ public class CompanyRestController implements InitializingBean {
         this.companyReadPlatformService = companyReadPlatformService;
     }
 
-    @GetMapping(value = "/v1/directories/{directory_id}/companies", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/v1/companies", produces = MediaType.APPLICATION_JSON_VALUE)
     public Response fetchCompanyList() {
         Response response = new Response();
         response.setData(companyReadPlatformService.fetchCompanies());
         return response;
     }
 
-    @PostMapping(value = "/v1/directories/{directory_id}/companies", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-    public TallyPackage createCompany(final @PathVariable(name = "directory_id") Integer directoryId, final @RequestBody String apiRequestBodyAsJson) {
+    @PostMapping(value = "/v1/companies", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+    public TallyPackage createCompany(final @RequestBody String apiRequestBodyAsJson) {
         final CommandWrapper wrapper = new CommandWrapperBuilder()
                 .createCompany(apiRequestBodyAsJson)
                 .build();
