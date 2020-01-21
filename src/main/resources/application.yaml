@@ -2,8 +2,19 @@ spring:
   profiles:
     active: dev # available options are dev, stage and prod
   application:
-    name: MobTally
+    name: Tally
   jpa:
-    database: postgresql
+    database: POSTGRESQL
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+
+# create database "tally" with owner "postgres" encoding 'UTF8' LC_COLLATE = 'en_US.UTF-8'
+# LC_CTYPE = 'en_US.UTF-8' TEMPLATE template0;
+
+#grant all privileges on database tally to postgres;
