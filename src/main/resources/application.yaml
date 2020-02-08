@@ -1,4 +1,7 @@
 spring:
+  flyway:
+    enabled: true
+    locations: classpath:/db/migration
   profiles:
     active: dev # available options are dev, stage and prod
   application:
@@ -12,9 +15,3 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
-
-
-# create database "tally" with owner "postgres" encoding 'UTF8' LC_COLLATE = 'en_US.UTF-8'
-# LC_CTYPE = 'en_US.UTF-8' TEMPLATE template0;
-
-#grant all privileges on database tally to postgres;

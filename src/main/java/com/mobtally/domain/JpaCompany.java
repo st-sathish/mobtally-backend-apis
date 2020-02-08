@@ -7,14 +7,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity(name = "company")
-@Table(name = "t_company")
+@Entity(name = "Company")
+@Table(name = "company")
 public class JpaCompany {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "company_id")
     private Long id;
+
+    public JpaCompany() {
+        // no-arg constructor
+    }
 
     @Column(name = "name")
     private String name;

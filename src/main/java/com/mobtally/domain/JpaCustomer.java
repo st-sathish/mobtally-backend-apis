@@ -46,6 +46,10 @@ public class JpaCustomer {
     @Column(name = "country_id")
     private Long country;
 
+    public JpaCustomer() {
+        // no-arg constructor
+    }
+
     public JpaCustomer(final String firstName, final String lastName,
                        final String email, final String password,
                        final Long mobileNumber) {
