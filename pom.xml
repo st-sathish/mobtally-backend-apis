@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <spring.boot.version>2.1.2.RELEASE</spring.boot.version>
+        <spring.boot.version>2.5.12</spring.boot.version>
         <jaxb.api.version>2.3.1</jaxb.api.version>
         <jaxb.core.version>2.3.0</jaxb.core.version>
         <swagger.version>2.9.2</swagger.version>
